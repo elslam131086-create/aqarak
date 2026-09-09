@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="عقارك - منصة عقارات للبحث عن الشقق والفيلات والمحلات والأراضي للبيع والإيجار.">
+  <title>عقارك | كل ما تحتاجه من عقارات</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container nav-inner">
+    <a class="logo" href="#">
+      <span class="logo-mark">⌂</span>
+      <span><b>عقارك</b><small>كل ما تحتاجه من عقارات</small></span>
+    </a>
+
+    <nav class="nav-links">
+      <a class="active" href="#home">الرئيسية</a>
+      <a href="#listings">عقارات للبيع</a>
+      <a href="#listings">عقارات للإيجار</a>
+      <a href="#about">من نحن</a>
+      <a href="#contact">اتصل بنا</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="btn btn-outline" onclick="showToast('صفحة إنشاء الحساب ستكون متاحة في المرحلة القادمة')">إنشاء حساب</button>
+      <button class="btn btn-dark" onclick="showToast('تسجيل الدخول سيكون متاحًا في المرحلة القادمة')">تسجيل دخول</button>
+    </div>
+  </div>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <div class="hero-copy">
+        <span class="eyebrow">منصة عقارات مصرية</span>
+        <h1>ابحث عن منزلك القادم<br><span>بكل سهولة</span></h1>
+        <p>ابحث عن أفضل العقارات للبيع أو الإيجار في المدن والمناطق التي تهمك.</p>
+      </div>
+
+      <div class="search-box" id="searchBox">
+        <div class="search-field wide">
+          <label>ابحث عن منطقة أو مشروع</label>
+          <input id="keyword" type="text" placeholder="مثال: الشيخ زايد، التجمع..." />
+        </div>
+        <div class="search-field">
+          <label>نوع العملية</label>
+          <select id="purpose">
+            <option value="all">بيع أو إيجار</option>
+            <option value="sale">للبيع</option>
+            <option value="rent">للإيجار</option>
+          </select>
+        </div>
+        <div class="search-field">
+          <label>نوع العقار</label>
+          <select id="type">
+            <option value="all">كل العقارات</option>
+            <option value="شقة">شقة</option>
+            <option value="فيلا">فيلا</option>
+            <option value="محل">محل</option>
+            <option value="أرض">أرض</option>
+          </select>
+        </div>
+        <button class="search-btn" onclick="filterListings()">بحث 🔍</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="container categories">
+    <div class="section-head">
+      <div><span class="section-kicker">استكشف</span><h2>ابحث حسب نوع العقار</h2></div>
+    </div>
+    <div class="category-grid">
+      <button class="category" onclick="quickFilter('شقة')"><span>🏢</span><b>شقق</b><small>سكنية وفندقية</small></button>
+      <button class="category" onclick="quickFilter('فيلا')"><span>🏡</span><b>فلل</b><small>مستقلة وكمبوندات</small></button>
+      <button class="category" onclick="quickFilter('محل')"><span>🏪</span><b>محلات</b><small>تجارية وإدارية</small></button>
+      <button class="category" onclick="quickFilter('أرض')"><span>📐</span><b>أراضي</b><small>زراعية وسكنية</small></button>
+    </div>
+  </section>
+
+  <section class="container listings" id="listings">
+    <div class="section-head">
+      <div><span class="section-kicker">اختياراتنا</span><h2>أحدث الإعلانات</h2></div>
+      <button class="text-btn" onclick="resetListings()">عرض الكل ←</button>
+    </div>
+
+    <div class="cards" id="cards">
+      <article class="card" data-purpose="sale" data-type="محل" data-location="المعادي">
+        <div class="card-img img-1"><span class="tag sale">للبيع</span><button class="heart">♡</button></div>
+        <div class="card-body">
+          <strong class="price">4,200,000 <small>ج.م</small></strong>
+          <h3>محل تجاري للبيع في المعادي</h3>
+          <p class="location">📍 المعادي - القاهرة</p>
+          <div class="specs"><span>📐 70 م²</span><span>🚿 1 حمام</span><span>🏬 تجاري</span></div>
+          <a href="#" onclick="showToast('صفحة تفاصيل العقار ستضاف قريبًا'); return false;">تفاصيل العقار ←</a>
+        </div>
+      </article>
+
+      <article class="card" data-purpose="rent" data-type="شقة" data-location="التجمع الخامس">
+        <div class="card-img img-2"><span class="tag rent">للإيجار</span><button class="heart">♡</button></div>
+        <div class="card-body">
+          <strong class="price">6,500 <small>ج.م / شهريًا</small></strong>
+          <h3>شقة 3 غرف للإيجار في التجمع</h3>
+          <p class="location">📍 التجمع الخامس - القاهرة</p>
+          <div class="specs"><span>📐 180 م²</span><span>🚿 2 حمام</span><span>🛏 3 غرف</span></div>
+          <a href="#" onclick="showToast('صفحة تفاصيل العقار ستضاف قريبًا'); return false;">تفاصيل العقار ←</a>
+        </div>
+      </article>
+
+      <article class="card" data-purpose="sale" data-type="فيلا" data-location="الشيخ زايد">
+        <div class="card-img img-3"><span class="tag sale">للبيع</span><button class="heart">♡</button></div>
+        <div class="card-body">
+          <strong class="price">8,500,000 <small>ج.م</small></strong>
+          <h3>فيلا فاخرة في الشيخ زايد</h3>
+          <p class="location">📍 الشيخ زايد - الجيزة</p>
+          <div class="specs"><span>📐 400 م²</span><span>🚿 4 حمام</span><span>🛏 5 غرف</span></div>
+          <a href="#" onclick="showToast('صفحة تفاصيل العقار ستضاف قريبًا'); return false;">تفاصيل العقار ←</a>
+        </div>
+      </article>
+
+      <article class="card" data-purpose="rent" data-type="شقة" data-location="مدينة نصر">
+        <div class="card-img img-4"><span class="tag rent">للإيجار</span><button class="heart">♡</button></div>
+        <div class="card-body">
+          <strong class="price">12,000 <small>ج.م / شهريًا</small></strong>
+          <h3>شقة مفروشة للإيجار في مدينة نصر</h3>
+          <p class="location">📍 مدينة نصر - القاهرة</p>
+          <div class="specs"><span>📐 150 م²</span><span>🚿 2 حمام</span><span>🛏 3 غرف</span></div>
+          <a href="#" onclick="showToast('صفحة تفاصيل العقار ستضاف قريبًا'); return false;">تفاصيل العقار ←</a>
+        </div>
+      </article>
+    </div>
+    <p id="noResults" class="no-results" hidden>مفيش عقارات مطابقة للبحث حاليًا.</p>
+  </section>
+
+  <section class="container cta" id="about">
+    <div class="cta-content">
+      <span class="section-kicker">لأصحاب العقارات</span>
+      <h2>هل تملك عقارًا وتريد بيعه أو تأجيره؟</h2>
+      <p>أضف عقارك ووصل لإشخاص أكثر يبحثون عن عقارات في منطقتك.</p>
+      <button class="btn btn-gold" onclick="showToast('إضافة العقار ستكون متاحة في المرحلة القادمة')">+ أضف عقارك الآن</button>
+    </div>
+    <div class="cta-icon">🏠🔑</div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="container footer-grid">
+    <div><a class="logo footer-logo" href="#"><span class="logo-mark">⌂</span><span><b>عقارك</b><small>كل ما تحتاجه من عقارات</small></span></a></div>
+    <div><h4>روابط سريعة</h4><a href="#home">الرئيسية</a><a href="#listings">عقارات للبيع</a><a href="#listings">عقارات للإيجار</a></div>
+    <div><h4>تواصل معنا</h4><p>📞 0100 000 0000</p><p>✉️ info@aqarak.com</p><p>📍 القاهرة - مصر</p></div>
+    <div><h4>تابعنا</h4><div class="socials"><span>f</span><span>▶</span><span>◎</span></div></div>
+  </div>
+  <div class="copyright">© 2026 عقارك. جميع الحقوق محفوظة.</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
